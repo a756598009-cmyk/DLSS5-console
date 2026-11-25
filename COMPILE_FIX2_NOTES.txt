@@ -1,0 +1,7 @@
+Compile Fix 2:
+- Fixed both missing DrawCombo comboId arguments in the HUD tab:
+  HUD preset uses combo id 6; counter position uses combo id 7.
+- Explicitly cast HUD grid integer coordinates to float to remove C4244 warnings at that line.
+- Preserved the existing dropdown popup selection and admin toggle logic.
+Build:
+  powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1

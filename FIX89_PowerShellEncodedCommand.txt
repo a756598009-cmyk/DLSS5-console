@@ -1,0 +1,9 @@
+Fix89 修复说明
+
+根因修复：RunPowerShellWait 不再将完整脚本以单引号拼接到 powershell.exe -Command。
+改为将脚本按 UTF-16LE 编码并 Base64 后使用 -EncodedCommand 执行，避免 PowerShell 将整段脚本当作字符串字面量，以及引号、中文和路径解析问题。
+
+因此 ZIP 校验、解压、清理等所有经 RunPowerShellWait 调用的脚本均使用同一可靠执行方式。
+解压日志额外记录 PowerShell 脚本执行是否成功。
+
+保留 Fix88 的 ZIP 条目真实路径定位、两种目录结构兼容、断点续传、LocalAppData 缓存、UTF-8 日志、Manifest、界面和图标。

@@ -1,0 +1,12 @@
+Fix50 - NR Choice popup mouse-wheel ownership
+
+- When an NR Choice popup is open on the Neural Rendering tab, wheel input over
+  the popup or its anchor is consumed by the popup interaction.
+- The wheel no longer scrolls the underlying NR page while the pointer is over
+  the open popup/anchor.
+- Pointer coordinates are converted to the same scrolled content coordinate
+  space used by the NR popup and hit rectangles.
+- Wheel input outside the popup and anchor continues to scroll the main page.
+- No NR values, option order, config keys, or UI layout were changed.
+
+Static source change only. Build and runtime behavior must be verified in VS2022.

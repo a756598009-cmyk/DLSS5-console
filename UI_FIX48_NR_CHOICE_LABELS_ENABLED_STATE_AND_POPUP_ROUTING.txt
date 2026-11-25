@@ -1,0 +1,16 @@
+Fix48 - NR Choice dropdown audit and state handling
+
+Changes:
+1. Added one shared IsNrChoiceEnabled predicate and reused it for NR control rendering and popup interaction. This keeps the popup from remaining usable when its dependent setting becomes disabled.
+2. DrawNrChoicePopup now validates the setting index, choice count, visible hit rectangle, and enabled state before drawing. Invalid/stale popup state is closed.
+3. HandleNrChoicePopupClick rechecks enabled state before committing a selected value, preventing stale popup clicks from changing disabled settings.
+4. Kept the existing per-key Chinese option labels. Audited all 13 Choice settings declared by InitNrSettings: every declared choice index has an explicit label mapping. The generic fallback is now “选项 N” rather than “未定义选项 N”, so an unexpected future value does not expose an implementation-error label.
+5. Existing outside-click flow is preserved: the old popup closes, then the click may be handled by the newly targeted control. Clicking another Choice therefore switches to that Choice; clicking a slider/toggle can still activate that control.
+
+No layout, NR setting keys, defaults, ranges, or choice ordering were changed.
+
+Validation:
+- Static audit: all 13 Choice settings and every declared index have explicit labels.
+- UTF-8 BOM retained in DLSS5SwapperDlg.cpp.
+- ZIP integrity checked after packaging.
+- Not compiled or runtime-tested with Visual Studio in this environment.

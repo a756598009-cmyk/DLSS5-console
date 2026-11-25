@@ -1,0 +1,7 @@
+Fix37 - Main page card proportion adjustment
+- Shortened the upper DLSS5 guidance card from 390 to 250 design pixels.
+- Moved the feature card/tabs/content upward by 140 design pixels.
+- Expanded the feature card to use the recovered vertical space.
+- Updated main-page hit testing and overlay rendering to follow the translated layout.
+- Full-page Settings layout remains unchanged.
+- VS2022 build/runtime validation is required.

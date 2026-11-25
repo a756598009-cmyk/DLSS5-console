@@ -1,0 +1,19 @@
+VS2022 Build Fix (2026-11-24)
+============================
+
+Based on the user's local archive: DLSS5_MFC_UI_SessionHotkeys_Rework7.zip
+
+Fixes applied to DLSS5SwapperDlg.cpp:
+1. Added a forward declaration for NrParseBool before LoadSettings uses it.
+2. Qualified Win32 window APIs with :: inside the EnumWindows callback to avoid MFC member-name lookup and accidental this capture:
+   ::IsWindowVisible, ::GetWindow, ::GetWindowTextLengthW, ::GetWindowTextW.
+3. Parenthesized std::max calls to prevent Windows min/max macro expansion.
+4. Corrected empty ternary branches to use wide string literals L"".
+5. Rewrote NRLive argument concatenation as std::wstring append operations instead of adding two string pointers.
+
+No UI features or tabs were intentionally removed.
+
+Validation status:
+- Source-level fixes applied and inspected.
+- This environment cannot run the user's Windows VS2022/MSBuild toolchain, so a successful Windows build is NOT claimed.
+- Run BUILD.ps1 on Windows and send the next complete compiler output if any errors remain.

@@ -1,0 +1,8 @@
+Fix23 - Match the requested DLSS5 master switch layout
+- Keep the top title-bar label "DLSS5" unchanged.
+- Move the master switch and dynamic startup countdown into the top row of the first panel.
+- Enlarge the in-panel DLSS5 label, toggle track/knob, and countdown text.
+- Move the capture label, capture-mode combo, and target detail field down 5 design pixels to clear the new large row.
+- Update the switch hit rectangle to match its visual position.
+- Preserve admin-run option, countdown selector, status, hotkeys, Bind Bypass, all tabs, and NRLive launch/stop behavior.
+- No Windows VS2022 build or runtime verification was performed.

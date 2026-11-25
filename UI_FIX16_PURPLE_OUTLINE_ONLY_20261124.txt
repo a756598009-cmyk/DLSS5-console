@@ -1,0 +1,12 @@
+Fix16 - 只保留紫色圆角轮廓，移除外侧系统矩形边框
+
+用户目标：紫色线以内的窗口内容和紫色圆角线保留；紫色线以外的白色/灰色矩形系统边框全部去掉。
+
+修改：
+1. 顶层窗口不再启用 WS_THICKFRAME、WS_CAPTION、WS_BORDER、WS_SYSMENU、WS_MINIMIZEBOX、WS_MAXIMIZEBOX，避免系统绘制矩形非客户区边框。
+2. 保留 WS_POPUP 和原有自绘最小化/最大化/关闭按钮。
+3. 新增 WM_NCHITTEST 八方向边缘命中，使用无边框窗口实现自由拉伸，不再依赖 WS_THICKFRAME。
+4. DWM_BORDER_COLOR 设置为 DWMWA_COLOR_NONE，避免系统额外绘制边框。
+5. 保留 SetWindowRgn 的圆角窗口区域，紫色自绘轮廓是唯一外边缘。
+
+尚未在 Windows VS2022 实际编译运行。需要实测八方向拉伸、最大化/还原、任务栏切换和四角命中。

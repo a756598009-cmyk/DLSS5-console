@@ -1,0 +1,9 @@
+Fix35 - Restore Settings controls click handling
+- Fixed settings-page click routing: combo boxes are now hit-tested before the
+  full-page Settings handler returns.
+- This restores the Capture Object selector and the Capture Source/Motion
+  selectors on the Settings page.
+- Kept the startup-delay value cycling through 3, 5, 10, 15, 20, and 30 seconds.
+- Kept the administrator toggle and countdown on the same row.
+- Saved C++ sources as UTF-8 with BOM.
+- VS2022 build/runtime validation is still required.

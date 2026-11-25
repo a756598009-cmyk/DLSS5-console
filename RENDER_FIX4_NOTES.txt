@@ -1,0 +1,17 @@
+Fix4 - GDI+ empty-string rendering guard
+
+Root cause found in the shared text helper T(Graphics&, const wchar_t*, ...):
+DrawCombo is intentionally called with an empty label for the capture-target selector.
+The helper previously forwarded that empty string to GDI+ Graphics::DrawString. An
+empty DrawString call can return InvalidParameter and leave later drawing operations
+on the same Graphics instance failing, which explains why painting stopped after the
+first capture-target control and the rest of the interface disappeared.
+
+Fix:
+- Return immediately for null or empty strings in T().
+- Preserve all existing controls, tabs, settings and rendering order.
+- Keep the Fix3 LONG coordinate compile fix.
+
+Validation:
+- Source patch applied and archive integrity checked.
+- Not compiled or run in Windows/MSVC in this environment. Please build and verify.

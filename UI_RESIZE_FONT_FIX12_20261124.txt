@@ -1,0 +1,13 @@
+Fix12 - Larger UI, resizable window, minimize/maximize
+
+Changes:
+- Increased initial client window size from 620x1280 to a screen-aware 760x1450 (bounded by screen dimensions).
+- Enabled WS_THICKFRAME, WS_SYSMENU, WS_MINIMIZEBOX and WS_MAXIMIZEBOX while retaining the custom popup-style title bar.
+- Added custom minimize, maximize/restore and close buttons in the title bar.
+- Added a minimum tracking size of 620x900.
+- Kept the existing 600x1240 design coordinate system and its DrawInterface scaling, so drawing and hit-testing continue to map through ToDesignPoint during resizing.
+- Increased shared GDI+ text scale from 1.30 to 1.42, including combo and HUD preview measurement fonts.
+- Preserved all three tabs, settings, NRLive integration, profile/configuration behavior and shortcut handling.
+
+Validation:
+- Source-level edits and archive integrity only. This environment cannot run the Windows MFC/MSVC build or validate interactive resizing on the user's desktop. Build with VS2022 and test resize, maximize/restore, minimize/restore and all controls at narrow/wide aspect ratios.

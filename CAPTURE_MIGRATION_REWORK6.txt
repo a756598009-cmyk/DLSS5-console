@@ -1,0 +1,23 @@
+NRLive Capture Migration - Rework6
+==================================
+
+Changes added on top of Capture Rework5:
+- Window enumeration now filters DWM-cloaked windows with DwmGetWindowAttribute(DWMWA_CLOAKED).
+- Process target mode adds a Browse EXE action. A user can choose an executable that is not
+  currently running; MFC stores an anchored, escaped executable-name regex and passes it through
+  -pname so NRLive can wait for that process name.
+- The selected-window PID is revalidated immediately before launch. If the process has exited,
+  the user is prompted to refresh and choose again instead of launching a stale PID.
+- A 500 ms session timer monitors the NRLive process handle, detects normal exit or wait failure,
+  closes the handle, and updates the UI status with the exit code.
+- Existing stop hotkey and start/stop toggle remain available to cancel an active NRLive session.
+- WGC/DXGI, FastMV/AMD optical flow, capture delay, admin elevation, and profile persistence remain.
+
+Important boundaries:
+- Choosing a not-yet-running executable relies on NRLive's own -pname waiting behavior. This MFC
+  project does not independently implement a five-minute process wait, because the exact timeout
+  and cancellation contract must come from the matching NRLive runtime source/version.
+- The EXE picker uses the executable basename for matching. It does not enforce the selected path;
+  if multiple processes share the same basename, NRLive may match any of them.
+- Process session status is monitored, but this does not validate whether capture itself succeeded.
+- Source-level changes only; Windows VS2022 build and NRLive runtime tests remain required.

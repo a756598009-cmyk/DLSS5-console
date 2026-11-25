@@ -1,0 +1,11 @@
+Click refresh fix:
+- Root cause: ToggleAt() unconditionally called SaveSettings() and Invalidate(FALSE),
+  even when the click was on blank space or non-interactive text.
+- ToggleAt() now tracks whether a real toggle state changed. It saves and invalidates
+  only after a valid toggle click.
+- Blank/decorative clicks no longer write the INI file or trigger a full repaint.
+- Removed the default CDialog::OnLButtonDown call from the custom-painted surface;
+  custom hit-testing remains responsible for its controls.
+- Dropdown, tab, slider, scroll, and admin-toggle event handling is otherwise preserved.
+Build:
+  powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1

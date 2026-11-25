@@ -1,0 +1,13 @@
+Fix13 - Visual proportion and typography correction
+
+Changes:
+- Reverted the extra global text multiplier from 1.42 to the previous 1.30. The 1.42 multiplier compounded with the enlarged window transform and made labels too large for their original control geometry.
+- Replaced independent X/Y stretching with a uniform scale based on min(clientWidth/designWidth, clientHeight/designHeight).
+- Centered the 600x1240 design canvas in the resizable client area (letterboxing as needed), preserving the original proportions of controls, typography, spacing, and rounded panels.
+- Updated mouse hit-test coordinate conversion to invert the same uniform transform and centered offsets.
+- Updated partial invalidation rectangle mapping to use the same transform.
+- Unified capture-combo popup width in wheel hit-testing with the actual 300-design-pixel popup width.
+- Preserved the larger initial window, resizable frame, minimize/maximize buttons, all three tabs, NRLive settings, and hotkey logic.
+
+Validation:
+- Source-level consistency and ZIP integrity only. Windows MFC/MSVC compilation and interactive UI testing must be performed on the user's Windows machine.

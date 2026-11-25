@@ -1,0 +1,27 @@
+Fix46 - Main-page dropdown popup click-coordinate normalization
+
+Issue:
+Main-page dropdowns are drawn beneath a fixed -140px Y translation. DrawCombo
+stores their hit rectangles in pre-translation screen coordinates, with the
+main-page scroll offset already removed. OnLButtonDown previously sent the raw
+mouse design coordinate to HandleComboPopupClick before applying the main-page
++140px coordinate normalization. As a result, the popup could render correctly
+but clicks on its options (for example FSR 3.1 or Native Resolution) could miss
+or hit the wrong row.
+
+Fix:
+Before testing an open popup, OnLButtonDown now creates a local popup-click
+coordinate. It adds +140px only when the Settings page is closed and the open
+combo ID is 3 or greater (main-page combos). Settings combos IDs 0-2 remain
+untouched. The regular click coordinate is not modified by this local copy, so
+subsequent outside-click handling and other controls retain their existing
+coordinate flow.
+
+Scope:
+Covers main-page upscaler, limiter method, NR style, HUD preset, and counter
+position dropdown popups. No UI layout, option order, saved setting format, or
+settings-page coordinates were changed.
+
+Validation:
+Static source patch and archive integrity only. Not compiled or runtime-tested
+in Visual Studio in this environment.

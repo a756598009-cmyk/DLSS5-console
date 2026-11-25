@@ -1,0 +1,7 @@
+Fix25 - Resize first panel layout to reserve the DLSS5 switch row
+- Reworked the first panel into a reserved top header band (60 design px) and a lower controls body.
+- Added a subtle inset header background so the DLSS5 label, large switch, and countdown have a dedicated area and are not visually crowded by capture controls.
+- Rendered the master row after the capture/hotkey controls to prevent later drawing from covering it.
+- Kept overall first-panel outer dimensions unchanged because its lower controls already fit; the internal panel layout now explicitly reserves the switch row.
+- Preserved capture controls, admin option, countdown selector, hotkeys, Bind Bypass, tabs, and NRLive behavior.
+- No Windows VS2022 build/runtime verification was performed.

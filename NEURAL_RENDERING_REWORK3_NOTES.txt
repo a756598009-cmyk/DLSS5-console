@@ -1,0 +1,22 @@
+Neural Rendering Rework 3 - targeted correctness fixes
+
+Reference files:
+- OpenNR-Installer-0.9.9/src/AmdNr.Core/NrLive/NrLiveConfig.cs
+- OpenNR-Installer-0.9.9/src/AmdNr.App/NrLive/NrLivePage.Rows.cs
+- OpenNR-Installer-0.9.9/src/AmdNr.App/NrLive/NrLivePage.Settings.cs
+- OpenNR-Installer-0.9.9/src/AmdNr.App/Languages/NrLive/NrLive.zh-CN.axaml
+
+Changes in this revision:
+1. Fixed the fast-mode dependency direction. The original source uses Needs=OpenNR.MochizukiRenoPassesMode and enables dependent fast controls only when the selected mode is non-zero (Fast).
+2. Removed that dependency from the PassesMode selector itself. It must remain interactive when Fast is selected so the user can switch back to Legacy.
+3. Added explicit display units for Proxy Anchor, Diffuse White, Linear Unit Nits and Paper White Scale.
+
+Audit findings retained:
+- The MFC table contains 79 NR setting rows.
+- All choice entries in the current table have explicit NrChoiceLabel mappings; this check is structural, not runtime proof.
+- MFC still uses GDI+ grouped rows rather than reproducing Avalonia's exact nested SubPanel/Group visual tree.
+- Runtime support detection remains a binary-string heuristic and must be validated against the installed NRLive executable.
+
+Not verified:
+- No VS2022/MSVC build was run in this environment.
+- No runtime integration test was run against the user's NRLive/OpenNR/Bridge installation.

@@ -1,0 +1,8 @@
+Fix31 - Restore the earlier Settings layout
+- Kept the DLSS5 master header and Settings/Return button unchanged.
+- Settings content is split into two stacked sections:
+  1) Capture & Launch + Hotkeys + Bind Bypass.
+  2) A separate Capture Settings card below, with WGC/DXGI and FastMV/AMD Optical Flow.
+- Moved capture-source and motion-vector controls out of Capture & Launch.
+- Repositioned administrator and countdown controls and updated their hit regions.
+- Build and runtime validation still required in VS2022.

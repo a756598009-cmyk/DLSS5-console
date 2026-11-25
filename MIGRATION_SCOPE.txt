@@ -1,0 +1,1 @@
+Scope intentionally limited to screenshot functions: session/shortcuts, capture/motion, upscaling/frame generation, neural rendering, and overlay/HUD. No installer/game-library/update features.

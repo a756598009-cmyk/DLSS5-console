@@ -1,0 +1,21 @@
+Fix14 - Remove white margins around the resizable UI
+
+Cause:
+DrawInterface uses uniform scaling and centers the 600x1240 design canvas.
+When the outer window has a different aspect ratio, unused client-area margins
+remain outside the canvas. The previous OnEraseBkgnd returned TRUE without
+painting, and OnPaint did not clear the full client surface, allowing the
+MFC dialog's default white background to show through.
+
+Changes:
+- OnEraseBkgnd fills the entire client rectangle with RGB(17,15,23), matching
+  the dark UI background.
+- OnPaint clears the entire GDI+ client surface with the same color before
+  drawing the centered interface.
+- The uniform scaling, aspect ratio, resize behavior, title buttons, and all
+  UI/control logic remain unchanged.
+
+Validation:
+- Source-level patch applied.
+- ZIP integrity checked after packaging.
+- Not compiled or run in Windows/VS2022 in this environment.

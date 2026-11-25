@@ -1,0 +1,6 @@
+Borderless window update:
+- Removed native Windows caption, system menu and frame styles.
+- Added a custom drawn close X in the top-right corner.
+- Added drag-to-move behavior on the top header strip.
+- Kept GDI+ custom-drawn purple rounded border and all existing UI controls.
+Build with: powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1

@@ -1,0 +1,6 @@
+Fix33 - Keep administrator toggle and startup countdown on one row
+- Restored the administrator toggle and startup countdown to the same row.
+- Moved the countdown label/value left to avoid colliding with the toggle switch.
+- Updated both countdown click hit-tests to match the new position.
+- Preserved the settings section layout and other controls.
+- VS2022 build/runtime validation is still required.

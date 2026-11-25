@@ -1,0 +1,9 @@
+Fix18 - Remove highlighted text
+
+Changes in DLSS5SwapperDlg.cpp:
+- Window title text changed from "DLSS 5 SWAPPER 控制台" to "DLSS 5"; only the text inside the first red annotation is removed.
+- Removed the subtitle "NRLive 功能控制台".
+- Removed the section heading "缩放会话 · 快捷键".
+- Kept the underlying session/hotkey panel, capture controls, all settings, and all behavior unchanged.
+
+No controls, tabs, configuration keys, or NRLive launch logic were removed.

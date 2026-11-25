@@ -1,0 +1,8 @@
+Fix21 - DLSS5 master switch layout
+
+- Moved the DLSS5 title and master switch to the left side of the top header.
+- Countdown/status text now appears after the switch, also left-aligned in the same horizontal group.
+- Increased DLSS5 title font, countdown font, switch dimensions, and switch knob size.
+- Updated the hit rectangle to match the enlarged switch.
+- Preserved the existing StartNrLive/stop logic, countdown behavior, and all pages/settings.
+- Source-level change only; requires Windows VS2022 build and runtime verification.

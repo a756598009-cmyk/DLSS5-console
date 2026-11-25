@@ -1,0 +1,12 @@
+Fix42 - Additional interaction audit fixes
+
+Two concrete issues found in Fix41:
+1. Settings-only hit rectangles (capture target, hotkeys, Bind Bypass) were
+   tested even when Settings was hidden. Their stale rectangles could overlap
+   the main feature pages and intercept clicks. They are now tested only while
+   m_settingsOpen is true.
+2. Standard slider hit rectangles were not cleared before drawing a new page.
+   A slider from a previously visited tab could remain clickable while hidden.
+   The slider rectangle array is now cleared at the beginning of DrawInterface.
+
+No visual layout changes. VS2022 compilation and runtime tests are still needed.

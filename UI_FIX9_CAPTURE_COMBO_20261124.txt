@@ -1,0 +1,10 @@
+UI Fix9 - Capture target combo width and popup hit testing
+
+1. Increased the closed capture-target combo width slightly (255 -> 275 design units).
+2. Widened only capture-target popup (combo 0) to 280 design units so long Chinese choices fit without overlapping/truncation.
+3. Updated popup invalidation and hit-test rectangles to use the same widened popup geometry.
+4. Changed WM_LBUTTONDOWN ordering: when a popup is open, popup item clicks are handled before capture-target/hotkey/bypass hit regions. This prevents click-through to controls underneath.
+5. Kept the primary Start button priority so its action remains accessible.
+6. No settings, tabs, shortcuts, or NRLive launch behavior were removed.
+
+Not verified with a Windows MSVC build or runtime test in this environment.

@@ -1,0 +1,8 @@
+UI FIX10 - Capture target selector width
+
+- Increased the capture-mode DrawCombo total width from 275 to 295 design units. This increases the visible selector field width from 165 to 185 design units, moving its right edge from x=313 to x=333.
+- Moved the target-detail field from x=315 to x=345 and reduced its width from 243 to 213 so it does not overlap the widened selector.
+- Updated target-detail text origin and truncation width to match its new field bounds.
+- Increased the capture-mode popup width from 280 to 300 design units consistently in drawing, invalidation and click hit-testing.
+- No settings, tabs, hotkey validation, launch logic, or NRLive arguments were changed.
+- ZIP integrity checked; Windows MSVC compilation/runtime not performed in this environment.

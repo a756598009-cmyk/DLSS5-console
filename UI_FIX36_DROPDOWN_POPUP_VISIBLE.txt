@@ -1,0 +1,1 @@
+Fix36: Draw the custom combo popup before returning from the Settings rendering branch; align the capture-target popup with the Settings target field. Keeps existing layout. Requires Windows VS2022 runtime validation.

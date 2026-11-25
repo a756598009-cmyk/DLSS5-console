@@ -1,0 +1,7 @@
+Fix26 compile fix (2026-11-25)
+
+Fixed DLSS5SwapperDlg.cpp line around 1470:
+- Build the countdown label as a std::wstring variable.
+- Pass countdownText.c_str() to T(), whose second parameter is const wchar_t*.
+
+The C4244 int-to-float diagnostics are warnings and are not build-stopping errors.

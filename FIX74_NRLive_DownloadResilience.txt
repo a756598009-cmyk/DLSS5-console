@@ -1,0 +1,8 @@
+Fix74 - NRLive dependency download resilience
+- Uses four ordered release asset routes: gh-proxy.com, ghfast.top, ghproxy.net, GitHub official.
+- Each route downloads to nrlive.zip.part; only a file with ZIP PK signature and a plausible size is promoted to nrlive.zip.
+- Installation runs on a background std::thread; the UI remains responsive.
+- Worker captures only HWND and path strings; it never accesses the dialog object.
+- If the window closes, the worker does not dereference destroyed UI state; posting the result is best-effort.
+- Extraction is staged under cache\nrlive.installing and only publishes the directory after NRLive.exe is found.
+- Note: the worker is not actively cancelled on window close. A download may continue until URLMon returns; incomplete .part files are ignored and removed on the next install attempt.

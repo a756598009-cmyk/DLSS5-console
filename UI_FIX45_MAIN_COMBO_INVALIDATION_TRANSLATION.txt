@@ -1,0 +1,15 @@
+Fix45 - Main-page dropdown popup invalidation coordinate fix
+
+Issue:
+The FSR 4 dropdown opened briefly and disappeared. Main-page content and popup
+are drawn under a -140px Y translation, but InvalidateComboRegion invalidated
+its pre-translation anchor/popup rectangle. Windows therefore clipped the paint
+update to an area 140px too low, leaving the actual popup outside the update
+region.
+
+Fix:
+For main-page combo popups (excluding the fixed target combo), offset the
+invalidation rectangle by -140px before calling InvalidateDesignRect. Settings
+combos remain fixed and are not translated.
+
+No visual layout, option ordering, or selection behavior changed.

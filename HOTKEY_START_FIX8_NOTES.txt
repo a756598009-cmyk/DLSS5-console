@@ -1,0 +1,13 @@
+Fix8 - Hotkey validation must not block NRLive launch
+
+Changes:
+1. LoadSettings validates the loaded shortcut profile. If malformed or duplicated, it restores the known-good defaults:
+   Scale: ctrl+alt+s
+   Stop: ctrl+shift+a
+   HUD: ctrl+home
+   Bind Bypass: home,insert,end,pageup,pagedown
+2. StartNrLive repeats the validation guard. If an invalid profile is encountered during the current session, it restores and persists the defaults, then continues the launch sequence instead of returning early.
+3. SetStatus clears the stale hotkey-status override and displays the latest status. It copies the incoming string first to safely support calls passing m_hotkeyStatus.
+4. No UI pages, controls, or NRLive launch arguments were removed.
+
+Validation: source-level patch and ZIP integrity only. Windows MSVC/VS2022 build and runtime launch must still be tested.

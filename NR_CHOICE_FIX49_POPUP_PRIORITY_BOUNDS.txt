@@ -1,0 +1,13 @@
+Fix49 - NR Choice popup priority and viewport bounds
+
+1. Process an open NR Choice popup before NR master toggle, group headers,
+   setting rows, and sliders. This matches the visual z-order and prevents
+   clicks on an overlaid popup item from activating an underlying control.
+2. Constrain the popup rectangle to the scrollable NR viewport in content
+   coordinates (including current scroll offset). Prefer below the anchor,
+   otherwise above, then clamp within the viewport.
+3. Preserve existing Choice labels, option ordering, values, config keys,
+   defaults, layout, and UTF-8 BOM source encoding.
+
+Static source edit only. VS2022 build and runtime interaction tests have not
+been performed in this environment.

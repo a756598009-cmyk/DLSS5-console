@@ -1,0 +1,9 @@
+Dropdown and admin-toggle repair:
+- Replaced click-to-cycle pseudo dropdowns with actual popup option lists.
+- Popup options are drawn above the UI and support direct item selection.
+- Implemented dropdowns for target mode, capture source, motion vector, upscaler, limiter method, NR style, HUD preset, and HUD position.
+- Combo hit areas now use the exact rectangles used to draw each field, so the list opens from the actual control.
+- Fixed the admin-run toggle hit area: clicking either its label or the switch now toggles the setting.
+- Dropdown selection persists through the existing settings/profile save path.
+Build:
+  powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1

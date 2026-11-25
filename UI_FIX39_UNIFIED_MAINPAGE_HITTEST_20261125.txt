@@ -1,0 +1,14 @@
+Fix39 - Unified main-page hit-test coordinate space
+Root cause:
+- The main-page tabs and feature content are drawn with a -140px Y translation.
+- Different controls were hit-tested in mixed coordinate spaces. Some paths
+  added the translation, others did not; drag and wheel paths also omitted it.
+Fix:
+- Normalize main-page input coordinates once in OnLButtonDown, OnMouseMove,
+  and OnMouseWheel before testing content hit rectangles.
+- Keep fixed header/settings controls in their unshifted coordinate space.
+- Remove the second tab-only translation in HitTest to avoid double shifting.
+- This aligns combo boxes, sliders, toggles, NR controls/groups, overlay tiles,
+  expansion buttons, tabs, scrollbar and wheel handling with the rendered page.
+- No visual layout changes.
+- VS2022 build and runtime validation are still required.

@@ -1,0 +1,23 @@
+神经渲染完整设置移植记录
+========================
+
+本次对照原版：
+- src/AmdNr.Core/NrLive/NrLiveConfig.cs 的 Settings 表、默认值、范围、Pending/Only/Needs 规则
+- src/AmdNr.App/NrLive/NrLivePage.Rows.cs 的行控件、滑块、开关、选择菜单、分组和依赖显示行为
+- src/AmdNr.App/Languages/NrLive/NrLive.zh-CN.axaml 的中文选项名称和值
+
+本次 MFC 页面实现：
+1. 按原版配置键生成 NR 设置列表，不再只使用原先少量硬编码变量。
+2. 包含 OpenNR 的基础模型/风格/强度/处理次数、通道模式、局部结构、时间历史、合成、Look、编码、预处理和快速处理配置。
+3. 包含 NRLive 0.0.6 Bridge 的模型、风格、运行分辨率、强度、处理次数、结构、色彩、局部色调、最大比例、皮肤结构、历史强度、自动皮肤蒙版和稳定器。
+4. 每项配置按原版 section/key 写入 scaleconfig.ini；范围、默认值和小数倍率按原版配置表处理。
+5. 读取 NRLive.exe 中的 section/key 字符串判断 Pending 设置是否受支持；不支持的 OpenNR 项目不显示。
+6. 根据 [DLSSNR] runtime 兼容情况及 MochizukiNrRuntime.dll 是否存在，选择 OpenNR 或 Bridge 设置组。
+7. 编码、快速通道、原版模型、Look 和预处理相关设置按依赖关系显示为禁用状态；不会把禁用值清空。
+8. 神经渲染页面支持滚动；高级项默认展开，便于检查完整设置。
+
+重要说明：
+- MFC 选择控件当前采用点击循环选项的方式，而不是原版 Avalonia 下拉弹出菜单；各选项索引和 scaleconfig.ini 值保持对应。
+- 这份工程尚未在 Windows/Visual Studio 2022 环境中实机编译或连接 NRLive.exe 验证。请先编译，再检查 NRLive.log 和 scaleconfig.ini 的运行结果。
+- 原版 Pending 规则会隐藏 NRLive.exe 不支持的 OpenNR 配置键，这是兼容性行为，不是漏移植。
+- HUD 和放大帧以外的其他页面未在本次改动范围内重构。

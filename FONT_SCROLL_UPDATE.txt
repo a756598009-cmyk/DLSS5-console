@@ -1,0 +1,10 @@
+Font and scrolling update:
+- Increased all GDI+ text sizes globally by 30% for normal desktop readability.
+- Added independent vertical scrolling inside each of the three tabs.
+- Scroll content with the mouse wheel while pointer is over the tab page.
+- Drag the purple scrollbar thumb or click the scrollbar track to move by a page.
+- PageUp/PageDown/Home/End also scroll the active page.
+- Tab buttons and top session/capture controls remain fixed.
+- The page clips content at its viewport so expanded settings do not draw over the footer.
+Build:
+  powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1

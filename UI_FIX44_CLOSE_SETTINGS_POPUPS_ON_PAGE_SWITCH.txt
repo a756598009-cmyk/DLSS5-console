@@ -1,0 +1,22 @@
+Fix44 - Close Settings-only popup/editor state on page switch
+
+Changes:
+1. Both settings-page navigation hit paths (OnLButtonDown and HitTest) now close
+   m_openCombo and m_targetPopup and reset m_targetPage when switching pages.
+2. When leaving Settings, any active hotkey capture is cancelled so subsequent
+   key presses on the main page are not accidentally consumed by the hidden editor.
+3. If Bind Bypass text editing was active, the uncommitted value is restored from
+   m_bypassBeforeEdit before leaving Settings.
+4. No visual layout, control dimensions, or feature behavior was intentionally changed.
+
+Validation:
+- Source-level checks and ZIP integrity only.
+- VS2022 compilation and interactive runtime testing have not been performed.
+
+Suggested manual test:
+1. Open Settings and choose a target mode that enables the target picker.
+2. Open the target popup and click Return to Main without selecting an item.
+3. Confirm no orphaned popup remains on the main page.
+4. Repeat with a Settings combo popup open.
+5. Begin hotkey recording and leave Settings; confirm main-page keys are no longer captured.
+6. Edit Bind Bypass without pressing Enter, leave Settings, and confirm the uncommitted edit is discarded.

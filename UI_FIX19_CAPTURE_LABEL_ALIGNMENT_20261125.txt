@@ -1,0 +1,7 @@
+Fix19 - Capture object label alignment
+
+Changed only the vertical position of the "捕获对象" label in the session/hotkey section.
+It now uses y=160, aligned with the selected text baseline inside the adjacent capture-mode combo (whose text starts at y=160).
+The combo dimensions, target-detail field, hit-test rectangles, popup geometry, capture behavior, and all other UI elements are unchanged.
+
+Validation: source-level change only; Windows VS2022 build/runtime validation remains pending.

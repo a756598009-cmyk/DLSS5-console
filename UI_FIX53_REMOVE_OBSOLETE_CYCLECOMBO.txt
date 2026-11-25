@@ -1,0 +1,7 @@
+﻿Fix53 - Remove obsolete click-to-cycle handler
+
+- Removed the unused CycleCombo(int) implementation and declaration.
+- Confirmed there were no call sites; all current selectors open through OpenCombo and commit only in HandleComboPopupClick.
+- Settings selectors remain combo IDs 0 (target mode), 1 (capture source), 2 (motion vectors), and ID 8 remains countdown.
+- No layout, option order, configuration keys, or defaults changed.
+- Static source review only; VS2022 build/runtime not executed.

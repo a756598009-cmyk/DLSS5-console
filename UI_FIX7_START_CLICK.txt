@@ -1,0 +1,8 @@
+Fix7 - Start button click priority
+
+- Prioritizes the Start NRLive button in OnLButtonDown before capture-target and combo popup hit-testing.
+- Uses a slightly tolerant hit rectangle (x=30..570, y=345..395) matching the drawn primary button at y=350..386.
+- Prevents stale popup state from swallowing the Start click.
+- Keeps StartNrLive(), hotkey validation, SaveSettings(), elevation behavior, process tracking, and all tabs/settings unchanged.
+- Based on Rework7 UI Fix6 Scroll.
+- Source patch only; requires Windows VS2022 build and runtime verification.

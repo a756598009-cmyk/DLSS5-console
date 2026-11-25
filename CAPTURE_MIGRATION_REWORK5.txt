@@ -1,0 +1,34 @@
+NRLive Capture Migration - Rework5
+=================================
+
+Implemented in this revision:
+- Target mode selector now maps to the original NRLive command-line modes:
+  * picker -> -picker <delay>
+  * selected window -> -pid <pid> -delay <delay>
+  * selected process -> -pname <anchored-escaped-exe-regex> -delay <delay>
+- Added a Win32 EnumWindows-based visible-window picker. It excludes this app, hidden windows,
+  tool windows, owner windows, untitled windows, and windows whose process cannot be queried.
+- Added a Toolhelp process picker for currently running processes, de-duplicated by executable name.
+- Added refresh and paging for the target picker (8 entries per page).
+- Persisted target mode, target argument, display label, delay, capture mode, motion mode,
+  and administrator preference to scaleconfig.ini; profile Default.json now receives the actual
+  target_mode and target_text rather than an empty target_text.
+- Fixed launch arguments so selected PID/process modes no longer always launch with -picker.
+- Kept WGC/DXGI and FastMV/AMD optical-flow selection; FastMV is now the default, matching
+  NrLiveProfile.Motion = "fast".
+- Retained -nooverlay, --mv, --capture, --key, --overlaykey, --bindbypass and capability-gated
+  --upscaler arguments.
+
+Known scope difference:
+- The original Avalonia page can choose a game from its installer game library and wait for that
+  game's executable to appear (NrLiveWait). This MFC project has no game-library subsystem, so
+  this revision uses the live Windows process list for "指定进程" instead. It does not import
+  the installer's unrelated game-library feature.
+- The selected-process list contains currently running processes only; it is not a game catalog.
+- This is source-level implementation. Build and runtime behavior still need verification on
+  Windows with VS2022 and the user's NRLive binary.
+
+Reference behavior checked against:
+- NrLivePage.Session.cs
+- NrLiveProfile.cs
+- NrLiveNative.cs

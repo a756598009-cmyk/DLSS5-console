@@ -1,0 +1,7 @@
+Fix38 - Restore main feature tab click hit-testing
+- The main page draws feature tabs under a -140 design-pixel transform.
+- Their stored hit rectangles remain in unshifted design coordinates.
+- Convert tab click coordinates back to the original design space before
+  testing the three tab rectangles.
+- No visual layout changes.
+- VS2022 build/runtime validation is still required.

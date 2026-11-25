@@ -1,0 +1,23 @@
+叠加界面 / HUD 移植修订（Rework4）
+
+本轮以原版源码为基准：
+- src/AmdNr.Core/NrLive/NrLiveConfig.cs：HudItems、FPS 设置表、Supported/Tags/Shown 规则
+- src/AmdNr.App/NrLive/NrLivePage.Rows.cs：Tiles、Preview、Pipeline 行为
+- src/AmdNr.App/NrLive/NrLivePage.Settings.cs：页面级 Overlay 开关与 FPS.enabled 的区分
+- src/AmdNr.App/Languages/NrLive/NrLive.zh-CN.axaml：中文名称
+
+已修正/移植：
+1. 区分页面级叠加开关（profile 的 no_overlay / 启动参数 -nooverlay）与 [FPS].enabled（帧数计数器开关）。
+2. 新 HUD 根据 NRLive.exe 是否包含 [FPS] preset 对应宽字符串来识别；旧 HUD 只显示旧版 4 个位置，新 HUD 显示 6 个位置和预设。
+3. 新 HUD 的预设使用原版 17 个 HudItems 的开关矩阵：极简、紧凑、标准、完整；自定义不重写项目。
+4. 手动修改预设管理的项目后将 preset 设为 0（自定义）；FPS.enabled 不影响预设状态。
+5. 按原版 Settings 表显示可手动切换的 HUD Tiles：FPS.enabled、pipeline、gpu_load、gpu_temp、fps、frametime、frame_timing、lows、vram、cpu_load、gpu_times、resolution。Pending 项按 NRLive.exe 中的宽字符串 section/key 检测后显示。
+6. 正确保存新旧 HUD 分别使用的 scale / font_size、background_alpha、background、text_outline、position、layout。
+7. HUD 预览由当前开关、放大器、NR、FG 状态动态生成，不再使用固定示例文本。
+8. 新 HUD 手动项目变更保存时，写回全部 17 个 preset 管理键；旧 HUD 不写入新版 preset 专属键。
+
+未验证事项：
+- 当前执行环境不是 Windows + Visual Studio 2022，无法在此运行 MFC/MSBuild 编译。
+- Pending 字符串检测复刻了原版的宽字符串 section/key 检测思路，但未在每个 NRLive 发布版本上验证所有二进制字符串布局。
+- HUD 预览是设置预览，不是真正读取游戏实时遥测；实际绘制仍由 NRLive 运行时完成。
+- 需要在用户机器上验证旧 HUD 与新 HUD 两种 NRLive 版本的运行效果。

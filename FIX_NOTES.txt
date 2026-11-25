@@ -1,0 +1,5 @@
+This revision changes the dialog base class from CDialogEx to the standard MFC CDialog.
+The supplied build log shows CDialogEx is not being declared in the user's MFC include setup,
+causing the entire message map and CWnd member calls to fail. CDialog is declared by afxwin.h
+and supports the APIs used by this sample. The custom GDI+ drawing paints the full UI background,
+so CDialogEx::SetBackgroundColor was not needed and has been removed.

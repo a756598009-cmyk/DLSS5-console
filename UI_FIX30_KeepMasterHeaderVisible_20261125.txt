@@ -1,0 +1,7 @@
+Fix30 - Keep DLSS5 Master Header Visible
+- The persistent DLSS5 label, master switch, countdown hint, and Settings/Back button
+  are drawn in the top header band.
+- The full-page Settings background now begins below that header (y=156), so it
+  cannot paint over the header or cover the Back-to-main button.
+- Settings view still replaces the feature tabs and their content below the header.
+- VS2022 build and runtime validation required.

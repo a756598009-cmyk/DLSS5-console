@@ -1,0 +1,29 @@
+DLSS5 MFC UI - Neural Rendering migration audit (revision)
+
+Reference source files (OpenNR-Installer-0.9.9):
+- src/AmdNr.Core/NrLive/NrLiveConfig.cs
+- src/AmdNr.App/NrLive/NrLivePage.Rows.cs
+- src/AmdNr.App/NrLive/NrLivePage.Settings.cs
+- src/AmdNr.App/Languages/NrLive/NrLive.zh-CN.axaml
+
+This revision verifies the 79 NR setting rows (OpenNR + DLSSNR Bridge) against the upstream table:
+- Every row's section/key pair is present, with no missing or extra keys.
+- Chinese labels and every available choice label are taken from the upstream zh-CN resource.
+- Defaults, bounds, kind, advanced visibility, and decimal scales are represented in the MFC row table.
+- Choice menus no longer use generic ordinal labels for the upstream NR choices.
+- Fast-path dependent rows are enabled only when channel mode is set to Fast (value 1).
+- Encoding-dependent rows are disabled while Source Encoding remains "By format" (value 0).
+- INT4 remains dependent on the original model; Look and Preprocess child controls follow their parent toggles.
+- Runtime selection honors [DLSSNR] runtime when the NRLive executable exposes that pending key; Bridge is normalized back to auto as in the source loader.
+- Saving skips rows belonging to the inactive runtime and skips pending keys not detected in the current NRLive.exe.
+- Decimal values are stored using the source table's scale factors; HistoryPrecision stores the literal 16/32 values.
+
+UI implementation note:
+- MFC retains the existing GDI+ visual style, collapsible setting groups, scrolling, and click/slider controls.
+- This is a behavior-oriented port, not a pixel-identical Avalonia layout. Some Avalonia nested panels and hint tooltips are represented by MFC grouped sections and disabled-state styling.
+
+Verification status:
+- Static source-table check: 79/79 section/key pairs.
+- Chinese resource check: upstream names/options are embedded in the MFC code.
+- Not compiled with VS2022/MSVC in this environment.
+- Not runtime-tested against the user's NRLive.exe / OpenNR runtime / Bridge DLL. Actual runtime support still depends on the installed NRLive build reading the relevant keys.

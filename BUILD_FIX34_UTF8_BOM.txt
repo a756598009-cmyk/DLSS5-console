@@ -1,0 +1,4 @@
+Fix34 - MSVC source encoding normalization
+The C++ source/header files are saved as UTF-8 with BOM so MSVC recognizes
+Chinese labels and Unicode symbols regardless of the active Windows code page.
+No functional logic or UI layout changes are included beyond Fix33.

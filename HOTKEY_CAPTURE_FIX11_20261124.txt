@@ -1,0 +1,13 @@
+Fix11 - Hotkey capture/parser hardening
+
+Changes:
+- Reworked ParseHotkey whitespace trimming to handle spaces, tabs, CR and LF consistently.
+- Added common PageUp/PageDown aliases (pgup/pgdn).
+- Hotkey capture now ignores generic and left/right Ctrl/Alt/Shift modifier key events before selecting the base key.
+- Modifier state is sampled with GetAsyncKeyState for generic and left/right modifier virtual keys.
+- Parse failures now include the exact captured chord in the status message, making any remaining failure diagnosable.
+- Preserved the existing hotkey defaults, duplicate validation, profile persistence, RegisterHotKey behavior, and NRLive argument flow.
+
+Validation note:
+- Source-level edits and ZIP integrity checked in this environment.
+- Not compiled with Windows MSVC/VS2022 here; user-side build and key capture test remain required.

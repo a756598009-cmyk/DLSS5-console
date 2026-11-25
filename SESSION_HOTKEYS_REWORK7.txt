@@ -1,0 +1,24 @@
+缩放会话 · 快捷键移植说明（Rework7）
+====================================
+
+本次对照原版 NrLiveProfile.cs、NrLivePage.Session.cs、NrLivePage.Settings.cs、NrLiveNative.cs 补齐快捷键设置。
+
+已实现：
+1. ScaleHotkey、StopKey、OverlayKey 三个快捷键点击录制；支持 Ctrl / Alt / Shift / Win 修饰键，以及字母、数字、F1-F24、Home/End/Insert/Delete、方向键、PageUp/PageDown、Space、Tab、Enter、Esc、Pause、PrintScreen。
+2. 三个快捷键格式校验和相互冲突检查（比较修饰键与虚拟键，不受字符串顺序影响）。
+3. ScaleHotkey 使用 RegisterHotKey 注册为全局快捷键；注册失败时显示可能被其他程序占用的提示。
+4. StopKey 不在控制台重复注册：它由 NRLive 运行时处理；当外部进程无法结束提升权限的 NRLive 时，原版 launcher 才通过 NrLiveNative.Press(StopKey) 发送按键。
+5. OverlayKey 只传递给 NRLive，不由控制台抢占注册。
+6. Bind Bypass 可点击编辑，支持逗号分隔键名、Ctrl+A 清空、Backspace 删除、Enter 保存、Esc 取消；按原版 TryParse 规则校验每个非空项目。
+7. 四项设置从 profiles\Default.json 读取，并保存回同一文件；启动 NRLive 时传递 StopKey、OverlayKey、BindBypass。
+8. 快捷键录制包含 WM_KEYDOWN 和 WM_SYSKEYDOWN 路径，支持 Alt 组合键。
+
+重要语义：
+- ScaleHotkey 是控制台全局快捷键，触发与启动按钮相同的会话切换。
+- StopKey 是 NRLive 自己的停止快捷键，不应由控制台 RegisterHotKey 占用。
+- OverlayKey 是 NRLive 的 HUD 切换快捷键，不应由控制台 RegisterHotKey 占用。
+
+尚未验证：
+- 未在 Windows 11 + VS2022 上实际编译。
+- 未在 NRLive 实机上验证按键注入、游戏独占全屏和管理员权限组合。
+- RegisterHotKey 对 ScaleHotkey 的系统占用检查已实现；StopKey/OverlayKey 的运行时注册结果仍由 NRLive 决定。

@@ -1,0 +1,8 @@
+Fix28 - Move Capture Options Into Settings
+- Removed the always-visible Capture Settings strip from the main page.
+- Moved Capture Source (WGC/DXGI) and Motion Vector (FastMV/AMD Optical Flow)
+  into the Settings page.
+- Reflowed hotkey status, three hotkey controls, and Bind Bypass to fit the
+  existing top settings panel without overlapping the tabs.
+- Kept the three main feature tabs unchanged.
+Build/runtime validation is still required in the user's VS2022 environment.

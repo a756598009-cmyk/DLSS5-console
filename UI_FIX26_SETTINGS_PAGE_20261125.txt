@@ -1,0 +1,7 @@
+Fix26 - Move all configuration controls into Settings
+- Added a Settings/Back button next to the DLSS5 countdown.
+- Main view now shows only DLSS5 start switch, countdown, and a short hint.
+- Settings view contains capture target/mode, admin launch toggle, startup delay, status, scale/stop/HUD hotkeys, and Bind Bypass.
+- Kept separate capture source and motion vector settings in the existing capture settings strip on the main view.
+- Kept NRLive start/stop behavior and persisted configuration fields.
+- No Windows VS2022 build/runtime verification was performed.

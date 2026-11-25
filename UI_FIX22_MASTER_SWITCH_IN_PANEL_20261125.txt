@@ -1,0 +1,7 @@
+Fix22 - Move DLSS5 master switch into first panel
+- Kept the top title-bar text "DLSS5" unchanged.
+- Moved the DLSS5 master label, large switch, and dynamic startup countdown into the first panel's top row.
+- Removed the switch/countdown from the title-bar area.
+- Kept the capture selector, administrator option, countdown selector, hotkeys, and NRLive start/stop logic unchanged.
+- Updated the master switch hit rectangle to match its new visual position.
+- No VS2022 build/runtime verification was performed in this environment.

@@ -1,0 +1,11 @@
+Fix43 - Settings/Main Scroll Isolation
+
+Changes:
+1. DrawCombo now applies m_scrollOffset only to main-page combos. Settings-page combo hit rectangles remain in fixed page coordinates, matching their rendered positions even when the main page was previously scrolled.
+2. PageDown/PageUp/Home/End keyboard navigation now changes m_scrollOffset only while the main page is active. The hidden main-page scroll position is preserved while Settings is open.
+
+No visual layout changes were made.
+
+Validation:
+- Source-level checks and ZIP integrity checks only.
+- Visual Studio 2022/MSBuild compilation and interactive runtime testing were not performed in this environment.

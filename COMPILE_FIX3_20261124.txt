@@ -1,0 +1,8 @@
+VS2022 compile fix 3 (2026-11-24)
+
+Fixed the reported C2672 errors at DLSS5SwapperDlg.cpp line 733.
+CRect::top/bottom are LONG while popupY and popupY+totalH were int. The min/max calls now use explicit LONG operands, retaining macro-safe (std::min)/(std::max) invocation.
+
+No UI features, tabs, controls, or runtime behavior were removed. The C4244 int-to-float diagnostics reported by the user's build are warnings, not build-stopping errors, and are unchanged in this fix.
+
+This source-level fix has not been compiled in the user's Windows/MSVC environment. Please rebuild and report any subsequent errors.

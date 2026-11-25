@@ -1,0 +1,8 @@
+Fix29 - Full-page Settings navigation
+- Clicking Settings switches the complete content canvas to a dedicated Settings page.
+- Feature tabs and feature content are hidden while Settings is open.
+- Settings page contains target capture, capture source, motion vectors, admin launch,
+  countdown, three hotkeys, and Bind Bypass.
+- The DLSS5 master switch remains in the top header; Settings button becomes Back.
+- Clicks in Settings are prevented from falling through to hidden feature tabs.
+- VS2022 build and runtime verification required.

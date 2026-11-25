@@ -1,0 +1,15 @@
+UI Fix6 - content overflow and wheel repaint
+
+1. Reduced the scrollable page drawing clip from x=25..573 to x=25..558,
+   reserving the right gutter for the fixed scrollbar so page controls/text
+   cannot paint beneath or beyond the scrollbar lane.
+2. Reworked OnMouseWheel:
+   - If a custom combo popup or its anchor is under the pointer, consume the
+     wheel without scrolling the page or causing a repaint. Combo lists are
+     short and fully visible, so no internal list scrolling is needed.
+   - Page scrolling invalidates only the scrollable page rectangle. The
+     header, capture settings, tabs and footer are not invalidated.
+   - No Invalidate(FALSE) full-window refresh is issued for wheel scrolling.
+
+No controls, tabs, settings, or runtime features were removed.
+Windows/MSVC build and live UI behavior still require user-side verification.

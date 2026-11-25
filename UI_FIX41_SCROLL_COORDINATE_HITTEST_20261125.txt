@@ -1,0 +1,17 @@
+Fix41 - Scroll-aware control hit-testing correction
+
+Audit findings and changes:
+- NR group/control hit rectangles and NR slider rectangles are stored in
+  original content coordinates. Their click and drag paths now always restore
+  m_scrollOffset after the page's -140 draw translation.
+- Standard combo boxes and standard sliders already store hit rectangles with
+  m_scrollOffset applied; their paths intentionally do NOT add it again.
+- Generic ToggleAt/HitTest regions use original content coordinates. The
+  remaining main-page click path now restores m_scrollOffset unconditionally.
+- Wheel scrolling is explicitly limited to the main-page scrollable content;
+  fixed header/tabs and the Settings page are excluded.
+- No visual layout changes.
+
+Important validation:
+- This is a source-level coordinate correction. It still requires VS2022
+  compilation and interactive runtime testing, especially after scrolling.

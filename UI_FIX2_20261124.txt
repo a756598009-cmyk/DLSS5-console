@@ -1,0 +1,10 @@
+Rework7 UI Fix 2 (2026-11-24)
+
+Changes:
+1. Combo-box selected text is measured using the UI font and ellipsized to remain inside the field.
+2. Capture-target text is measured and clipped to the available right-side status field.
+3. HUD preview truncation width is reduced to preserve a right-side margin.
+4. HUD metric tiles now use the same purple accent family as the rest of the interface instead of the isolated red palette.
+5. Combo popup open/close/selection now invalidates only the affected control/popup area. HUD preset changes invalidate the HUD page region because they update multiple tiles. The capture-target mode invalidates only the upper session area.
+
+No features or tabs were removed. This source package has not been compiled with MSVC in this environment; build and runtime validation remain required.

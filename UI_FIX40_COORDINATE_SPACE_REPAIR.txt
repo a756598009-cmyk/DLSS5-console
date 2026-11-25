@@ -1,0 +1,21 @@
+Fix40 - Main page coordinate handling correction
+
+Corrections based on a source audit of Fix39:
+1. Main-page tabs are visible at design Y=340..383 after the -140px draw
+   translation. Click normalization now begins at Y=340, not Y=375.
+2. Tabs are hit-tested immediately after the fixed -140px translation and
+   BEFORE page scroll offset is added. Tabs therefore remain fixed while
+   feature content scrolls.
+3. Generic HitTest no longer handles tabs after content scroll normalization.
+4. During mouse capture/drag, OnMouseMove applies the same -140px page
+   coordinate conversion continuously, including when the pointer moves
+   outside the visible content viewport.
+5. Scroll-wheel conversion remains limited to the scrollable content region.
+
+Existing per-control coordinate conventions are preserved:
+- combo/standard slider hit rectangles already include -scrollOffset;
+- NR/group hit rectangles are converted by adding scrollOffset at click time;
+- fixed tabs are not affected by scrollOffset;
+- fixed header and Settings controls are tested before main-page conversion.
+
+No visual layout changes. VS2022 build and runtime testing are still required.

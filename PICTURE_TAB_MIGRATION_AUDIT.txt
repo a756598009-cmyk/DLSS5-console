@@ -1,0 +1,19 @@
+放大与帧生成页迁移补齐记录
+
+对照来源：
+- src/AmdNr.Core/NrLive/NrLiveConfig.cs 的 picture 组
+- src/AmdNr.App/NrLive/NrLivePage.Settings.cs 的放大器命令行配置
+- src/AmdNr.Core/NrLive/NrLiveProfile.cs 的 Upscaler / Arguments 逻辑
+
+本次补齐：
+1. FSR 锐度：读取/写入 scaleconfig.ini [FSR] sharpness，范围 0..100，默认 65。
+2. 帧生成：读取/写入 [FrameGeneration] enabled；按原版默认值 0（关闭）。
+3. 帧率限制：读取/写入 [FrameLimiter] enabled、fps、method；fps 范围 15..500，默认 60；method 放入“更多设置”。
+4. 放大器：从 profiles\\Default.json 读取/保存 upscaler（fsr4/fsr31/none），与 NRLive 原版配置位置一致。
+5. 启动兼容性：扫描 NRLive.exe 是否含 UTF-16LE 的 --upscaler\0 标记；仅支持的版本才显示放大器选择并传递 --upscaler，避免旧版本因未知参数退出。
+6. 更多设置按钮点击区域与实际绘制位置统一。
+7. 关闭叠加界面时，启动参数增加 -nooverlay。
+
+未虚构额外的“帧生成高级参数”：原版 picture 组中帧生成只有 FrameGeneration.enabled 开关；原版唯一 Advanced picture 设置是 FrameLimiter.method。
+
+注意：当前执行环境不是 Windows/Visual Studio，未能在此处运行 VS2022 的真实编译。请在 Windows 中执行 BUILD.ps1 验证。

@@ -1,0 +1,8 @@
+Fix32 - Settings layout spacing correction
+- Kept the always-visible DLSS5 header and Settings/Return action.
+- Widened the header action button and adjusted its caption position.
+- Separated the administrator toggle row from the startup countdown row.
+- Moved the countdown click target with its displayed value.
+- Preserved the three settings sections and their order:
+  Capture & Launch, Hotkeys, Capture Settings.
+- VS2022 build and runtime validation are still required.

@@ -1,0 +1,7 @@
+Compile Fix 1:
+- Fixed C2065 by moving the clamped dropdown selection index into DrawCombo's enclosing scope.
+- Preserved dropdown popup selection behavior.
+- Made slider ratio conversion explicit to avoid C4244 warnings where applicable.
+- No feature removals.
+Build:
+  powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1

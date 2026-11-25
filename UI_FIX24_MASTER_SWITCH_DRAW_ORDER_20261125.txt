@@ -1,0 +1,7 @@
+Fix24 - Correct first-panel draw order
+- Root cause: the large DLSS5 master row was painted before the first panel's filled background, so the panel background covered it.
+- Draw the DLSS5 label, large switch, and dynamic countdown immediately after drawing the first panel background.
+- Keep the first panel dimensions unchanged.
+- Keep the switch hit rectangle aligned with the visible switch.
+- Preserve capture controls, admin option, hotkeys, Bind Bypass, tabs, and NRLive launch/stop behavior.
+- No Windows VS2022 build/runtime verification was performed.

@@ -1,0 +1,3 @@
+﻿#pragma once
+#define IDD_DLSS5_SWAPPER_DIALOG 101
+#define IDR_MAINFRAME 128

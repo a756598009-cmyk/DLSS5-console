@@ -1,0 +1,6 @@
+Fix 1:
+- Replaced deprecated/unsafe _wfopen call with _wfopen_s, resolving MSVC C4996.
+- Made the slider ratio conversion explicit to avoid C4244 warnings.
+- No UI behavior or feature scope changed.
+Build:
+  powershell -NoProfile -ExecutionPolicy Bypass -File .\BUILD.ps1
