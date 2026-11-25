@@ -1,5 +1,7 @@
 # DLSS5-console
 专为视频，窗口，检测严的游戏打造DLSS5使用工具
+国内网盘下载：https://pan.quark.cn/s/440c751e1165?pwd=kBUv
+
 关于
 原作者
 NRLive 由 Caliel 制作（GPL-3.0） https://github.com/Caliel666/NRLive
